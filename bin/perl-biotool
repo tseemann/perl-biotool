@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use 5.14.0;
+use 5.26.0;
 use strict;
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";

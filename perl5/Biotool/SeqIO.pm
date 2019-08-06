@@ -1,5 +1,6 @@
 package Biotool::SeqIO;
 
+use 5.26.0;
 use strict;
 use Data::Dumper;
 #use URI::Escape;
