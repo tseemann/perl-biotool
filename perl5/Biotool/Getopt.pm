@@ -1,6 +1,6 @@
 package Biotool::Getopt;
 
-use 5.14.0;
+use 5.26.0;
 use strict;
 use Data::Dumper;
 use List::Util qw(max);

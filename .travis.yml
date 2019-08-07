@@ -11,7 +11,7 @@ addons:
             - gzip
 
 install:
-    - "cpanm --quiet --notest Path::Tiny SemVer"
+    - "cpanm --quiet --notest Path::Tiny SemVer File::Which"
     - "wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz"
     - "tar zxvf ncbi-blast-2.9.0+-x64-linux.tar.gz"
     - "export PATH=$PWD/bin:$PWD/ncbi-blast-2.9.0+/bin:$PATH"
