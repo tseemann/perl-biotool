@@ -86,7 +86,9 @@ sub getopt {
     $opt->{$switch} //= $p->{$switch}{default};
     err("Option --$switch is mandatory") 
       if $p->{$switch}{need} and not defined $opt->{$switch};
-    validate($self, $p->{$switch}{type}, $opt->{$switch});
+    #say Dumper($p->{$switch});
+    validate($self, $p->{$switch}{type}, $opt->{$switch})
+      if defined $opt->{$switch};
   }
   
   return $opt;

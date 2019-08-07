@@ -5,9 +5,12 @@ use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use Biotool::Getopt;
 use Biotool::Logger;
+use Biotool::Binaries;
 use Data::Dumper;
 
 sub main {
+  require_exe($_) for qw(grep head tail);
+
   my $opt = Biotool::Getopt->getopt( 
   {
     name => 'biotool',
@@ -17,7 +20,7 @@ sub main {
   {
     indir => { type=>'idir', default=>'/tmp' },   
     dbdir => { type=>'idir', need=>1 },   
-    infile => { type=>'ifile', need=>1 },
+    infile => { type=>'ifile', need=>0 },
     outdir => { type=>'dir', },
     outfile => { type=>'file', },
     myint => { type=>'int', default=>42, need=>1 },
