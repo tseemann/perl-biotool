@@ -4,10 +4,10 @@ use strict;
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use Biotool::Getopt;
+use Biotool::Logger;
 use Data::Dumper;
 
 sub main {
-  #print STDERR "$0 :: main(@_)\n";  
   my $opt = Biotool::Getopt->getopt( 
   {
     name => 'biotool',
@@ -25,6 +25,7 @@ sub main {
     mybool => { type=>'bool', default=>0 },   
     myinc => { type=>'counter', default=>0 },   
   });
+
   print Dumper($opt);
 }
 

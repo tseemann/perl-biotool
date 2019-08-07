@@ -4,9 +4,7 @@ use 5.26.0;
 use strict;
 use Data::Dumper;
 use List::Util qw(max);
-
-sub msg { print STDERR "@_\n"; }
-sub err { msg(@_); exit(1) };
+use Biotool::Logger;
 
 sub validate {
   my($self, $type, $value) = @_;
