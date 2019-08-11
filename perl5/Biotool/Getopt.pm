@@ -48,6 +48,8 @@ sub show_help {
       $$p{$opt}{desc}||'',
       ($$p{$opt}{default} ? "[".$$p{$opt}{default}."]" : '');
   }
+  printf "AUTHOR\n  %s\n", $d->{author} if $d->{author};
+  printf "HOMEPAGE\n  %s\n", $d->{url} if $d->{url};
   exit($err ? $err : 0);
 }
 

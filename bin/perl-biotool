@@ -11,9 +11,11 @@ use Data::Dumper;
 sub main {
   my $opt = Biotool::Getopt->getopt( 
   {
-    name => 'biotool',
+    name => 'perl-biotool',
     version => '0.0.1',
     desc => 'Helps do bio stuff easier and quicker',
+    author => 'Torsten Seemann',
+    url => 'https://github.com/tseemann/perl-biotool',
   },
   {
     indir => { type=>'idir', default=>'/tmp' },
