@@ -2,8 +2,10 @@ package Biotool::Getopt;
 
 use 5.26.0;
 use strict;
+use File::Basename;
 use Data::Dumper;
 use List::Util qw(max);
+use lib '..';
 use Biotool::Logger;
 
 my $DEBUG=0;
@@ -96,6 +98,36 @@ sub getopt {
   }
   
   return $opt;
+}
+
+sub main {
+  my $opt = __PACKAGE__->getopt(
+    {
+      name => 'biotool',
+      version => '0.0.1',
+      desc => 'Helps do bio stuff easier and quicker',
+    },
+    {
+      indir => { type=>'idir', default=>'/tmp' },
+      dbdir => { type=>'idir' },
+      infile => { type=>'ifile', need=>0, desc=>"File to read" },
+      outdir => { type=>'dir', },
+      outfile => { type=>'file', desc=>"File to write to"},
+      myint => { type=>'int', default=>42, need=>1 },
+      myfloat => { type=>'float', default=>'3.14' },
+      mybool => { type=>'bool', default=>0 },
+      myinc => { type=>'counter', default=>0 },
+      mystring => { type=>'string', default=>'piece of string' },
+      mychar => { type=>'char', default=>'N', desc=>"Single character" },
+      check => { type=>'bool', default=>0, desc=>"Check dependencies and exit" },
+    }
+  );
+  print Dumper($opt);
+  return 0;
+}
+
+if (basename($0) eq 'Getopt.pm') {
+  exit main();
 }
 
 1;
