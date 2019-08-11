@@ -27,6 +27,7 @@ sub main {
     myfloat => { type=>'float', default=>'3.14' },   
     mybool => { type=>'bool', default=>0 },   
     myinc => { type=>'counter', default=>0 },   
+    mystring => { type=>'string', default=>'piece of string' },
   });
 
   print Dumper($opt);

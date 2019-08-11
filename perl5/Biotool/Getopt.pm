@@ -13,6 +13,7 @@ sub validate {
     'bool'    => sub { @_[0] =~ m/^(0|1)$/; },
     'counter' => sub { @_[0] =~ m/^\d+$/; },
     'float'   => sub { @_[0] =~ m/^[+-]?\d+\.\d+$/; },
+    'string'  => sub { @_[0] =~ m/\S/; },
     'ifile'   => sub { -f @_[0] && -r _ },
     'idir'    => sub { -d @_[0] && -r _ },
     'file'    => sub { 1 },
