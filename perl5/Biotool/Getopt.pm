@@ -14,6 +14,7 @@ sub validate {
     'counter' => sub { @_[0] =~ m/^\d+$/; },
     'float'   => sub { @_[0] =~ m/^[+-]?\d+\.\d+$/; },
     'string'  => sub { @_[0] =~ m/\S/; },
+    'char'    => sub { length(@_[0])==1; },
     'ifile'   => sub { -f @_[0] && -r _ },
     'idir'    => sub { -d @_[0] && -r _ },
     'file'    => sub { 1 },

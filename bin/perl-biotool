@@ -20,14 +20,15 @@ sub main {
   {
     indir => { type=>'idir', default=>'/tmp' },   
     dbdir => { type=>'idir', need=>1 },   
-    infile => { type=>'ifile', need=>0 },
+    infile => { type=>'ifile', need=>0, desc=>"File to read" },
     outdir => { type=>'dir', },
-    outfile => { type=>'file', },
+    outfile => { type=>'file', desc=>"File to write to"},
     myint => { type=>'int', default=>42, need=>1 },
     myfloat => { type=>'float', default=>'3.14' },   
     mybool => { type=>'bool', default=>0 },   
     myinc => { type=>'counter', default=>0 },   
     mystring => { type=>'string', default=>'piece of string' },
+    mychar => { type=>'char', default=>'N', desc=>"Single character" },
   });
 
   print Dumper($opt);
