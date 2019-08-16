@@ -49,7 +49,7 @@ $HOME/perl-biotool/bin/perl-biotool --help
 ## Dependencies
 
 * `perl` >= 5.26
-* Perl modules: `Path::Tiny` `SemVer` `File::Which`
+* Perl modules: `File::Which`
 
 ## License
 

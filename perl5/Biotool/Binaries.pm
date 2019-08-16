@@ -7,7 +7,6 @@ use Exporter 'import';
 our @EXPORT = qw(require_exe);
 
 use Data::Dumper;
-use SemVer;
 use File::Which;
 use File::Basename;
 use lib '..';
@@ -53,7 +52,7 @@ my %VERSION = (
 );
 
 sub require_exe {
-  my($exe, $cmd, $minver, $maxver) = @_;
+  my($exe, $cmd) = @_;
   my $path = which($exe) or err("Could not find needed tool '$exe'");
   unless ($cmd) {
     $cmd = $VERSION{$exe} || "$exe --version 2>&1";

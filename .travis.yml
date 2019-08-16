@@ -11,7 +11,7 @@ addons:
             - gzip
 
 install:
-    - "cpanm --quiet --notest Path::Tiny SemVer File::Which"
+    - "cpanm --quiet --notest File::Which"
     - "export PATH=$PWD/bin:$PATH"
 
 script:
