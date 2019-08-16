@@ -11,8 +11,8 @@ addons:
             - gzip
 
 install:
-    - "cpanm --quiet --notest File::Which"
     - "export PATH=$PWD/bin:$PATH"
+#    - "cpanm --quiet --notest File::Which"
 
 script:
     - "perl-biotool --version"

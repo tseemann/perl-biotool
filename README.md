@@ -49,7 +49,6 @@ $HOME/perl-biotool/bin/perl-biotool --help
 ## Dependencies
 
 * `perl` >= 5.26
-* Perl modules: `File::Which`
 
 ## License
 
