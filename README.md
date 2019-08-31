@@ -18,8 +18,6 @@ This is a Github template for my Perl based bioinformatics tools.
 % perl-biotool --version
 perl-biotool 0.1.2
 
-% perl-biotool --help
-
 ```
 
 ## Installation
@@ -27,13 +25,13 @@ perl-biotool 0.1.2
 ### Conda
 Install [Conda](https://conda.io/docs/) or [Miniconda](https://conda.io/miniconda.html):
 ```
-conda install -c conda-forge -c bioconda -c defaults perl-biotool
+conda install -c conda-forge -c bioconda -c defaults perl-biotool # COMING SOON
 ```
 
 ### Homebrew
 Install [HomeBrew](http://brew.sh/) (Mac OS X) or [LinuxBrew](http://linuxbrew.sh/) (Linux).
 ```
-brew install brewsci/bio/perl-biotool
+brew install brewsci/bio/perl-biotool # COMING SOON
 ```
 
 ### Source
