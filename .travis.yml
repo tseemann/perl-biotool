@@ -23,3 +23,5 @@ script:
     - perl-biotool dummy --myinc --myinc --myinc |& grep "'myinc' => 3"
     - perl-biotool dummy --myint -42 |& grep "myint' => '-42'"
     - "! perl-biotool file1 file2"
+    - "cd perl5/Biotool && for M in *.pm ; do perl $M ; done"
+
