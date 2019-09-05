@@ -17,4 +17,7 @@ install:
 script:
     - "perl-biotool --version"
     - "perl-biotool --help"
-    - "perl-biotool --check"
+    - "perl-biotool --check dummy"
+    - "perl-biotool file1"
+    - "! perl-biotool file1 file2"
+
