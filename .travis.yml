@@ -21,5 +21,5 @@ script:
     - "perl-biotool dummy"
     - "perl-biotool |& grep 'Need at least 1'"
     - perl-biotool dummy --myinc --myinc --myinc |& grep "'myinc' => 3"
-    - perl-biotool dummy --myint -4 |& grep "myint' => '-42'"
+    - perl-biotool dummy --myint -42 |& grep "myint' => '-42'"
     - "! perl-biotool file1 file2"
