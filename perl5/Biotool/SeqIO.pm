@@ -199,8 +199,11 @@ sub read_genbank {
       $dna =~ s/\s//g;
       $s{SEQ} .= $dna;
     }
-    # CDS complement(400.600)
+    # CDS  complement(400.600)
+    # CDS  100..900
+    # rRNA order(1..10,900..100)
     elsif (m/^\s{5}(\S+)\s+(\w+\()?(\d+)\.\.(\d+)/) {
+      #print STDERR "FEATURE: [ $1 | $2 | $3 | $4 ]\n";
       # save prev one if these was one
       push @{$s{ANNO}}, { %f } if $f{ftype};
       # start new one
@@ -209,8 +212,10 @@ sub read_genbank {
         ftype => $1,
         begin => $3, 
         end => $4,
-        strand => $2 =~ m/^compl/ ? '-' : '+',
       );
+      # we do this after so we don't clobber $1 $3 $4
+      $f{strand} = ($2 =~ m/^compl/ ? '-' : '+');
+      #print STDERR Dumper(\%f);
     }
     # /tag=value
     elsif (m'^\s{21}/(\w+)=\"?([^"]+)"?') {
