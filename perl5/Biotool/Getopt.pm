@@ -31,11 +31,12 @@ sub validate {
 }
 
 sub show_help {
-  my($self, $d, $p, $err) = @_;
+  my($self, $d, $p, $pp, $err) = @_;
   select $err ? \*STDERR : \*STDOUT;
   printf "NAME\n  %s %s\n", $d->{name}, $d->{version};
   printf "SYNOPSIS\n  %s\n", $d->{desc};
-  printf "USAGE\n  %s [options]\n", $d->{name};
+  my $argv = $pp->{argv} ? ' '.$pp->{argv} : '';;
+  printf "USAGE\n  %s [options]$argv\n", $d->{name};
   printf "OPTIONS\n";
   $$p{help} = { type=>'', desc=>'Show this help' };
   $$p{version} = { type=>'', desc=>'Print version and exit' };
@@ -60,7 +61,7 @@ sub show_version {
 }
 
 sub getopt {
-  my($self, $d, $p) = @_;
+  my($self, $d, $p, $pp) = @_;   ## pp = positional param
 #  print Dumper($p);
   my $opt = {};
   my $switch = '';
@@ -68,7 +69,7 @@ sub getopt {
     msg("Checking arg=[$arg]") if $DEBUG;;
     if ($arg =~ m/^--?(\w+)(=(\S+))?$/) {
       $switch = $1;
-      $switch =~ m/^(h|help)$/ and show_help($self,$d,$p);
+      $switch =~ m/^(h|help)$/ and show_help($self,$d,$p,$pp);
       $switch =~ m/^(V|version)$/ and show_version($self,$d);
       exists $p->{$switch} or err("Invalid option --$switch");
       unshift @ARGV, $3 if defined $3;
@@ -89,6 +90,16 @@ sub getopt {
     }
   }
   
+  # check we have the correct amount of positional parameters
+  my $argc = $opt->{ARGV} ? scalar(@{$opt->{ARGV}}) : 0;
+  msg("You have $argc positional parameters") if $DEBUG;
+  if (defined $pp->{argc_min} and $argc < $pp->{argc_min}) {
+    err("Need at least",$pp->{argc_min},"positional parameters; you have $argc.");
+  }
+  if (defined $pp->{argc_max} and $argc > $pp->{argc_max}) {
+    err("Can only handle",$pp->{argc_max},"positional parameters; you have $argc.");
+  }
+ 
   # go back and fill in defaults
   for my $switch (keys %$p) {
     $opt->{$switch} //= $p->{$switch}{default};
@@ -122,6 +133,11 @@ sub main {
       mystring => { type=>'string', default=>'piece of string' },
       mychar => { type=>'char', default=>'N', desc=>"Single character" },
       check => { type=>'bool', default=>0, desc=>"Check dependencies and exit" },
+    },
+    {
+      argv => 'contigs.fa ...',
+      min_argc => 1,
+      max_argc => 3,
     }
   );
   print Dumper($opt);

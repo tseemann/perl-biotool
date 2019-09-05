@@ -21,8 +21,8 @@ sub main {
     indir => { type=>'idir', default=>'/tmp' },
     dbdir => { type=>'idir', desc=>"Location of database" },
     infile => { type=>'ifile', need=>0, desc=>"File to read" },
-    outdir => { type=>'dir', desc=>"Output folder" }},
-    outfile => { type=>'file', desc=>"File to write to"},
+    outdir => { type=>'dir', desc=>"Output folder" },
+    outfile => { type=>'file', desc=>"File to write to" },
     myint => { type=>'int', default=>42, need=>1 },
     myfloat => { type=>'float', default=>'3.14' },   
     mybool => { type=>'bool', default=>0 },   
@@ -30,7 +30,13 @@ sub main {
     mystring => { type=>'string', default=>'piece of string' },
     mychar => { type=>'char', default=>'N', desc=>"Single character" },
     check => { type=>'bool', default=>0, desc=>"Check dependencies and exit" },
-  });
+  },
+  {
+    argv => 'contigs.fa ...',
+    argc_min => 1,
+    argc_max => 1,
+  },
+  );
 
   print Dumper($opt);
 
