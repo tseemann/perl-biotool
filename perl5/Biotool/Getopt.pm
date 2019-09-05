@@ -66,25 +66,26 @@ sub getopt {
   my $opt = {};
   my $switch = '';
   while (my $arg = shift @ARGV) {
-    msg("Checking arg=[$arg]") if $DEBUG;;
+    msg("Handling arg=[$arg]") if $DEBUG;
     if ($arg =~ m/^--(\w+)(=(\S+))?$/) {
       $switch = $1;
+      unshift @ARGV, $3 if defined $3; # handle =value syntax on next loop
       $switch =~ m/^(h|help)$/ and show_help($self,$d,$p,$pp);
       $switch =~ m/^(V|version)$/ and show_version($self,$d);
       exists $p->{$switch} or err("Invalid option --$switch");
-      unshift @ARGV, $3 if defined $3;
-      msg("Switch=[$switch]") if $DEBUG;;
-      my $s = $$opt{$switch};
-      $$opt{$switch}=1 if $$s{type} eq 'bool';
-      $$opt{$switch}++ if $$s{type} eq 'counter';
+      my $s = $$p{$switch};
+      msg("Switch=[$switch] has type", $$s{type}) if $DEBUG;;
+      if ($$s{type} eq 'bool') { $$opt{$switch}=1; $switch=undef; }
+      elsif ($$s{type} eq 'counter') { $$opt{$switch}++; $switch=undef; }
     }
     else {
-      msg("Value=[$arg]") if $DEBUG;
       if ($switch) {
+        msg("Value=[$arg] attaching to --$switch") if $DEBUG;
         $$opt{$switch} = $arg;
         $switch = '';
       }
       else {
+        msg("Value=[$arg] adding to ARGV") if $DEBUG;
         push @{ $opt->{ARGV} }, $arg;
       }
     }
