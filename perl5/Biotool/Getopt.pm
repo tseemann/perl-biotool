@@ -67,7 +67,7 @@ sub getopt {
   my $switch = '';
   while (my $arg = shift @ARGV) {
     msg("Checking arg=[$arg]") if $DEBUG;;
-    if ($arg =~ m/^--?(\w+)(=(\S+))?$/) {
+    if ($arg =~ m/^--(\w+)(=(\S+))?$/) {
       $switch = $1;
       $switch =~ m/^(h|help)$/ and show_help($self,$d,$p,$pp);
       $switch =~ m/^(V|version)$/ and show_version($self,$d);
