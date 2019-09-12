@@ -25,15 +25,17 @@ sub show_help {
   my $width = max( map { length } @opt );
   for my $opt (@opt) {
     my $t = $$p{$opt}{type};
+    my $musthave = !defined($$p{$opt}{default}) && $$p{$opt}{need};
     my $choices = $t eq 'choice' && $p->{$opt}{choices} 
                 ? ' {'.join(' ',$p->{$opt}{choices}->@*).'}'
                 : '';
-    printf "  --%-${width}s  %-7s  %s%s%s\n",
+    printf "  --%-${width}s  %-7s  %s%s%s%s\n",
       $opt,
       $NOPARM{$t} ? '' : $t,
       $$p{$opt}{desc} || ucfirst($t),
       $choices,
-      ($$p{$opt}{default} ? " [".$$p{$opt}{default}."]" : '');
+      ($$p{$opt}{default} ? " [".$$p{$opt}{default}."]" : ''),
+      ($musthave ? ' (MANDATORY)' : '');
   }
   printf "AUTHOR\n  %s\n", $d->{author} if $d->{author};
   printf "HOMEPAGE\n  %s\n", $d->{url} if $d->{url};
