@@ -3,6 +3,7 @@ package Biotool::Getopt;
 use 5.26.0;
 use strict;
 use File::Basename;
+use Text::Abbrev;
 use Data::Dumper;
 use List::Util qw(max);
 use lib '..';
@@ -77,10 +78,13 @@ sub getopt {
 #  print Dumper($p);
   my $opt = {};
   my $switch = '';
+  my %abbrev = abbrev( 'help', 'version', keys %$p );
+  #msg(Dumper(\%abbrev)) if $DEBUG;
   while (my $arg = shift @ARGV) {
     msg("Handling arg=[$arg]") if $DEBUG;
     if ($arg =~ m/^--(\w+)(=(\S+))?$/) {
-      $switch = $1;
+      $switch = $abbrev{ $1 } || $1;
+      msg("Unabbreviating Switch: '$1' => '$switch'") if $DEBUG;
       unshift @ARGV, $3 if defined $3; # handle =value syntax on next loop
       $switch =~ m/^(h|help)$/ and show_help($self,$d,$p,$pp);
       $switch =~ m/^(V|version)$/ and show_version($self,$d);
