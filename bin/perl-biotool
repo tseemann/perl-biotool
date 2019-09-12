@@ -18,6 +18,8 @@ sub main {
     url => 'https://github.com/tseemann/perl-biotool',
   },
   {
+    mytype => { type=>'choice', choices=>[qw(ABC DEF GH3)], desc=>"Type of thing" },
+    mytype2 => { type=>'choice', need=>1, choices=>[qw(a bb ccc dddd)], desc=>"Needed type of thing" },
     indir => { type=>'idir', default=>'/tmp' },
     dbdir => { type=>'idir', desc=>"Location of database" },
     infile => { type=>'ifile', need=>0, desc=>"File to read" },
