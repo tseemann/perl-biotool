@@ -5,6 +5,7 @@
 :warning: This software is still in early development
 
 # perl-biotool
+
 Small pure Perl5 libraries for writing command line bioinformatics tools
 
 ## Introduction
@@ -25,13 +26,14 @@ perl-biotool 0.1.2
 ## Installation
 
 ### Conda
-Install [Conda](https://conda.io/docs/) or [Miniconda](https://conda.io/miniconda.html):
+Install [Bioconda](https://bioconda.github.io/user/install.html) then:
 ```
 conda install -c conda-forge -c bioconda -c defaults perl-biotool # COMING SOON
 ```
 
 ### Homebrew
-Install [HomeBrew](http://brew.sh/) (Mac OS X) or [LinuxBrew](http://linuxbrew.sh/) (Linux).
+Install [Homebrew](http://brew.sh/) (Mac OS X)
+or [Linuxbrew](http://linuxbrew.sh/) (Linux) then:
 ```
 brew install brewsci/bio/perl-biotool # COMING SOON
 ```
